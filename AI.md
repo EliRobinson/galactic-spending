@@ -1,3 +1,6 @@
+## Initial Prompt:
+
+```
 I need you to write typescript code for the following application:
 "USAFacts is interested in the galactic spending of long, long ago in a galaxy far, far away. There is a hope that the spend on starships has gone down over time, so it can focus on more important things like planetary population growth, but we are unsure.
 
@@ -28,3 +31,10 @@ The code generated must be complete and runnable without requiring any external 
 There should be a turbo command that runs just the back end, just the front end, or both with watchers.
 
 In addition, let's make this code available to be run in a docker container for easy running at a later time.
+```
+
+##Second prompt:
+
+```
+Create a top level readme which contains documentation on how to run all of the code in the various apps and folders while also providing a detailed list of technologies used at the various layers, e.g. Back-end, front-end, build-system
+```
