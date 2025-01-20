@@ -18,7 +18,7 @@ Layout: There should be a graph on the main page which displays a graph of spend
 
 Appearance: The GUI should have a clean and simple design. Please use well known star wars colors. Allow a light mode and a dark mode, where the light mode is Rebel Alliance colors and the dark mode is empire colors. There should be a button that allows switching between light and dark modes.
 
-Localization: All text should be included in an en-US.ts file as keys that work with react-intl. In addition, attempt to make a separate localization file in Shyriiwook (the wookie language). You can store these files in the top level src folder in a folder called "i18n".
+Localization: All text should be included in an en-US.ts file as keys that work with react-intl. In addition, attempt to make a separate localization file in Shyriiwook (the wookie language). You can store these files in the frontend app src folder in a folder called "l10n" in an "i18n" folder.
 
 Build system: I'd like the build system for this code to use Turbo, and include Husky and lint-staged with ESLint standard, Prettier standard, and prevent eslint and prettier from colliding using plugins.
 

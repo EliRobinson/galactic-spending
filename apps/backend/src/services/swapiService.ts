@@ -37,9 +37,12 @@ class SWAPIService {
     try {
       const { data: film } = await axios.get<Film>(filmUrl);
       const starships = await Promise.all(
-        film.films.map(starshipUrl => axios.get<Starship>(starshipUrl))
+        film.films.map(async (starshipUrl: string) => {
+          const response = await axios.get<Starship>(starshipUrl);
+          return response.data;
+        })
       );
-      return starships.map(response => response.data);
+      return starships;
     } catch (error) {
       console.error('Error fetching starships:', error);
       throw new Error('Failed to fetch starships data');

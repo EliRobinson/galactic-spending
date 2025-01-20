@@ -137,7 +137,7 @@ importers:
         specifier: ^17.0.2
         version: 17.0.83
       autoprefixer:
-        specifier: ^10.4.14
+        specifier: ^10.4.20
         version: 10.4.20(postcss@8.5.1)
       jest:
         specifier: ^29.5.0
@@ -146,10 +146,10 @@ importers:
         specifier: ^29.5.0
         version: 29.7.0
       postcss:
-        specifier: ^8.4.23
+        specifier: ^8.5.1
         version: 8.5.1
       tailwindcss:
-        specifier: ^3.3.1
+        specifier: ^3.4.17
         version: 3.4.17
       typescript:
         specifier: ^5.0.4

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { swapiService } from '../services/swapiService';
 
-const router = Router();
+const router: Router = Router();
 
 router.get('/spending', async (req, res) => {
   try {
