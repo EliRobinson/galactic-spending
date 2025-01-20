@@ -2,8 +2,9 @@
 
 This application analyzes starship spending trends across the Star Wars saga episodes 1-6, using data from SWAPI (Star Wars API). It features a visual representation of spending patterns with filtering capabilities.
 
-## Project Structure 
+## Project Structure
 
+```
 star-wars-spending/
 ├── apps/
 │   ├── backend/     # Node.js Express API
@@ -12,21 +13,24 @@ star-wars-spending/
 ├── pnpm-workspace.yaml
 ├── turbo.json
 └── package.json
+```
 
 ## Technology Stack
 
 ### Backend (apps/backend)
+
 - **Runtime**: Node.js
 - **Framework**: Express.js
 - **Language**: TypeScript
 - **API Client**: Axios
-- **Security**: 
+- **Security**:
   - Helmet for HTTP headers
   - CORS protection
   - Rate limiting
 - **Testing**: Jest with Supertest
 
 ### Frontend (apps/frontend)
+
 - **Framework**: React 17 with Next.js
 - **UI Components**: Material-UI (MUI)
 - **Styling**: TailwindCSS
@@ -36,6 +40,7 @@ star-wars-spending/
 - **Testing**: Jest with React Testing Library
 
 ### Build System
+
 - **Monorepo Tool**: Turborepo
 - **Package Manager**: pnpm
 - **Code Quality**:
@@ -48,6 +53,7 @@ star-wars-spending/
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js 18 or higher
 - pnpm 8.x
 - Docker (optional)
@@ -55,12 +61,14 @@ star-wars-spending/
 ### Local Development
 
 1. Clone the repository:
+
    ```bash
    git clone <repository-url>
    cd star-wars-spending
    ```
 
 2. Install dependencies:
+
    ```bash
    pnpm install
    ```
@@ -68,27 +76,32 @@ star-wars-spending/
 3. Start the development servers:
 
    All applications:
+
    ```bash
    pnpm dev
    ```
 
    Only backend:
+
    ```bash
    pnpm dev:backend
    ```
 
    Only frontend:
+
    ```bash
    pnpm dev:frontend
    ```
 
 The applications will be available at:
+
 - Frontend: http://localhost:3000
 - Backend: http://localhost:4000
 
 ### Running Tests
 
 Run all tests:
+
 ```bash
 pnpm test
 ```
@@ -96,6 +109,7 @@ pnpm test
 ### Building for Production
 
 Build all applications:
+
 ```bash
 pnpm build
 ```
@@ -103,6 +117,7 @@ pnpm build
 ### Docker Deployment
 
 1. Build and run using Docker Compose:
+
    ```bash
    docker-compose up --build
    ```
@@ -131,6 +146,7 @@ pnpm build
 ### Code Style
 
 The project uses ESLint and Prettier for code formatting. Run format check:
+
 ```bash
 pnpm format
 ```
@@ -138,6 +154,7 @@ pnpm format
 ### Git Hooks
 
 Husky is configured to run the following checks before commits:
+
 - lint-staged: Runs linters on staged files
 - Type checking
 - Test running
@@ -147,6 +164,7 @@ Husky is configured to run the following checks before commits:
 Common issues and solutions:
 
 1. **Port Conflicts**: If ports 3000 or 4000 are in use, modify them in:
+
    - Frontend: `apps/frontend/next.config.js`
    - Backend: `apps/backend/src/index.ts`
    - Docker: `docker-compose.yml`

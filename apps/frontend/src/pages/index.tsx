@@ -8,7 +8,6 @@ import { EpisodeSelector } from '../components/EpisodeSelector';
 import { getSpendingData } from '../services/api';
 import { lightTheme, darkTheme } from '../theme/theme';
 import { messages as enMessages } from '../i18n/en-US';
-import { messages as wookieMessages } from '../i18n/wrr-WR';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { ErrorMessage } from '../components/ErrorMessage';
 

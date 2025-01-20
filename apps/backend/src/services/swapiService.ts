@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { Film, Starship, SpendingData } from '../types/starship';
 
+interface SWAPIResponse<T> {
+  results: T[];
+  next: string | null;
+}
+
 class SWAPIService {
   private baseURL = 'https://swapi.dev/api';
 
@@ -9,7 +14,7 @@ class SWAPIService {
     let nextUrl: string | null = url;
 
     while (nextUrl) {
-      const response = await axios.get(nextUrl);
+      const response = await axios.get<SWAPIResponse<T>>(nextUrl);
       results = [...results, ...response.data.results];
       nextUrl = response.data.next;
     }

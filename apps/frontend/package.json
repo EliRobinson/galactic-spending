@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^6.4.0",
     "@mui/material": "^5.12.1",
     "@nivo/core": "^0.80.0",
     "@nivo/line": "^0.80.0",
@@ -33,4 +34,4 @@
     "tailwindcss": "^3.3.1",
     "typescript": "^5.0.4"
   }
-} 
+}
