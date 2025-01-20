@@ -11,4 +11,6 @@ export const messages = {
   'theme.toggle': 'Wrrhhhh-ghghghghghgh',
   'theme.light': 'Rrrrrr-ghghghghghgh',
   'theme.dark': 'Wwwwwwww-ghghghghghgh',
+  'graph.tooltip.episode': 'Wrrhhhh-ghghghghghgh',
+  'graph.tooltip.spending': 'Aaaaaaaaaa-ghghghghghgh Rrrrrr-ghghghghghgh',
 }; 

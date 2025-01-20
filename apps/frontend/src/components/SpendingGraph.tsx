@@ -3,6 +3,7 @@ import { ResponsiveLine } from "@nivo/line";
 import { useIntl } from "react-intl";
 import { SpendingData } from "../types/spending";
 import { useSpendingData } from "../hooks/useQueries";
+import { log } from "console";
 
 interface SpendingGraphProps {
   selectedEpisodes: number[];
@@ -14,6 +15,13 @@ export const SpendingGraph: React.FC<SpendingGraphProps> = ({
   const theme = useTheme();
   const intl = useIntl();
   const { data = [] } = useSpendingData();
+
+  // Create episode map
+  const episodeMap = data.reduce<Record<number, SpendingData>>((acc, item) => {
+    acc[item.episode] = item;
+
+    return acc;
+  }, {});
 
   const filteredData = data.filter((item) =>
     selectedEpisodes.includes(item.episode)
@@ -33,7 +41,7 @@ export const SpendingGraph: React.FC<SpendingGraphProps> = ({
     <div className="h-[400px] w-full">
       <ResponsiveLine
         data={chartData}
-        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+        margin={{ top: 50, right: 110, bottom: 50, left: 80 }}
         xScale={{ type: "point" }}
         yScale={{
           type: "linear",
@@ -55,7 +63,7 @@ export const SpendingGraph: React.FC<SpendingGraphProps> = ({
           tickPadding: 5,
           tickRotation: 0,
           legend: intl.formatMessage({ id: "graph.yAxis" }),
-          legendOffset: -40,
+          legendOffset: -50,
           legendPosition: "middle",
           format: (value) =>
             intl.formatNumber(value as number, {
@@ -93,6 +101,31 @@ export const SpendingGraph: React.FC<SpendingGraphProps> = ({
               color: theme.palette.text.primary,
             },
           },
+        }}
+        tooltip={({ point }) => {
+          const episode =
+            typeof point.data.x === "string"
+              ? Number(point.data.x.split(" ")[1])
+              : 0;
+          const episodeTitle =
+            typeof episode === "number" ? episodeMap[episode].title : null;
+
+          return (
+            <div className="bg-white p-2 rounded-md shadow-md">
+              <strong>
+                {intl.formatMessage({ id: "graph.tooltip.episode" })}:{" "}
+              </strong>
+              {episodeTitle ?? point.data.x}
+              <br />
+              <strong>
+                {intl.formatMessage({ id: "graph.tooltip.spending" })}:{" "}
+              </strong>
+              {intl.formatNumber(point.data.y as number, {
+                notation: "compact",
+                compactDisplay: "long",
+              })}
+            </div>
+          );
         }}
       />
     </div>

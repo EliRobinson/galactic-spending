@@ -5,9 +5,7 @@ export interface Starship {
 
 export interface SpendingData {
   episode: number;
+  title: string;
   totalSpending: number;
-  starships: {
-    name: string;
-    cost: number;
-  }[];
+  starships: Starship[];
 } 
