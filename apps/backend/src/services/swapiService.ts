@@ -14,7 +14,7 @@ class SWAPIService {
     let nextUrl: string | null = url;
 
     while (nextUrl) {
-      const response = await axios.get<SWAPIResponse<T>>(nextUrl);
+      const response: { data: SWAPIResponse<T> } = await axios.get<SWAPIResponse<T>>(nextUrl);
       results = [...results, ...response.data.results];
       nextUrl = response.data.next;
     }
@@ -36,8 +36,12 @@ class SWAPIService {
   async getStarshipsForFilm(filmUrl: string): Promise<Starship[]> {
     try {
       const { data: film } = await axios.get<Film>(filmUrl);
+      if (!film.starships || !Array.isArray(film.starships)) {
+        return [];
+      }
+      
       const starships = await Promise.all(
-        film.films.map(async (starshipUrl: string) => {
+        film.starships.map(async (starshipUrl: string) => {
           const response = await axios.get<Starship>(starshipUrl);
           return response.data;
         })

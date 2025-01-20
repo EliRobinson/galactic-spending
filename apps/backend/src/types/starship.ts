@@ -11,6 +11,7 @@ export interface Film {
   episode_id: number;
   release_date: string;
   url: string;
+  starships: string[];
 }
 
 export interface SpendingData {

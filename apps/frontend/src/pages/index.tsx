@@ -1,16 +1,22 @@
-import { useState, useEffect } from 'react';
-import { useTheme as useMuiTheme, ThemeProvider, CssBaseline, IconButton } from '@mui/material';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { FormattedMessage, IntlProvider } from 'react-intl';
-import { SpendingGraph } from '../components/SpendingGraph';
-import { EpisodeSelector } from '../components/EpisodeSelector';
-import { getSpendingData } from '../services/api';
-import { lightTheme, darkTheme } from '../theme/theme';
-import { messages as enMessages } from '../i18n/en-US';
-import { LoadingSpinner } from '../components/LoadingSpinner';
-import { ErrorMessage } from '../components/ErrorMessage';
-import { SpendingData } from '../types/spending';
+import { useState, useEffect } from "react";
+import {
+  useTheme as useMuiTheme,
+  ThemeProvider,
+  CssBaseline,
+  IconButton,
+} from "@mui/material";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { FormattedMessage, IntlProvider } from "react-intl";
+import { SpendingGraph } from "../components/SpendingGraph";
+import { EpisodeSelector } from "../components/EpisodeSelector";
+import { getSpendingData } from "../services/api";
+import { lightTheme, darkTheme } from "../theme/theme";
+import { messages as enMessages } from "../i18n/en-US";
+import { LoadingSpinner } from "../components/LoadingSpinner";
+import { ErrorMessage } from "../components/ErrorMessage";
+import { SpendingData } from "../types/spending";
+import { Providers } from "./providers";
 
 export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -28,7 +34,7 @@ export default function Home() {
         setSpendingData(data);
         setLoading(false);
       } catch (err) {
-        setError('error.api');
+        setError("error.api");
         setLoading(false);
       }
     };
@@ -39,40 +45,43 @@ export default function Home() {
     setIsDarkMode(!isDarkMode);
   };
 
-  if (loading) {
-    return <LoadingSpinner />;
-  }
+  const renderContent = () => {
+    if (loading) {
+      return <LoadingSpinner />;
+    }
 
-  if (error) {
-    return <ErrorMessage messageId={error} />;
-  }
+    if (error) {
+      return <ErrorMessage messageId={error} />;
+    }
+
+    return (
+      <>
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold">
+            <FormattedMessage id="app.title" />
+          </h1>
+          <IconButton onClick={toggleTheme} color="inherit">
+            {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+          </IconButton>
+        </div>
+
+        <EpisodeSelector
+          selectedEpisodes={selectedEpisodes}
+          onSelectEpisodes={setSelectedEpisodes}
+          availableEpisodes={[1, 2, 3, 4, 5, 6]}
+        />
+
+        <SpendingGraph
+          data={spendingData}
+          selectedEpisodes={selectedEpisodes}
+        />
+      </>
+    );
+  };
 
   return (
-    <IntlProvider messages={enMessages} locale="en">
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <div className="min-h-screen p-8">
-          <div className="flex justify-between items-center mb-8">
-            <h1 className="text-3xl font-bold">
-              <FormattedMessage id="app.title" />
-            </h1>
-            <IconButton onClick={toggleTheme} color="inherit">
-              {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-            </IconButton>
-          </div>
-          
-          <EpisodeSelector
-            selectedEpisodes={selectedEpisodes}
-            onSelectEpisodes={setSelectedEpisodes}
-            availableEpisodes={[1, 2, 3, 4, 5, 6]}
-          />
-          
-          <SpendingGraph
-            data={spendingData}
-            selectedEpisodes={selectedEpisodes}
-          />
-        </div>
-      </ThemeProvider>
-    </IntlProvider>
+    <Providers messages={enMessages} locale="en" theme={theme}>
+      <div className="min-h-screen p-8">{renderContent()}</div>
+    </Providers>
   );
-} 
+}
