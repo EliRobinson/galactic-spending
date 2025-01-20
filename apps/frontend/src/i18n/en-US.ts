@@ -13,4 +13,9 @@ export const messages = {
   'theme.dark': 'Dark Side',
   'graph.tooltip.episode': 'Episode',
   'graph.tooltip.spending': 'Spend in Imperial Credits',
+  'graph.starship': 'Starship',
+  'graph.spending': 'Cost (Credits)',
+  'graph.starshipSpending.aria': 'Bar chart showing starship spending by episode',
+  'graph.tooltip.starship': 'Starship',
+  'graph.costThresholdNote': 'All ships worth over {threshold} have been removed from the graph',
 }; 

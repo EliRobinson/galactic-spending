@@ -13,4 +13,9 @@ export const messages = {
   'theme.dark': 'Wwwwwwww-ghghghghghgh',
   'graph.tooltip.episode': 'Wrrhhhh-ghghghghghgh',
   'graph.tooltip.spending': 'Aaaaaaaaaa-ghghghghghgh Rrrrrr-ghghghghghgh',
+  'graph.starship': 'Aaaaaaaaaa-ghghghghghgh',
+  'graph.spending': 'Rrrrrr-ghghghghghgh Wwwwwwww-ghghghghghgh',
+  'graph.starshipSpending.aria': 'Aaaaaaaaaa-ghghghghghgh Rrrrrr-ghghghghghgh Wwwwwwww-ghghghghghgh',
+  'graph.tooltip.starship': 'Aaaaaaaaaa-ghghghghghgh',
+  'graph.costThresholdNote': 'Wrrhhhh-ghghghghghgh {threshold} aaaaaaaaaaaaaa-ghghghghghgh',
 }; 

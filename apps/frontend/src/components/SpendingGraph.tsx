@@ -4,6 +4,9 @@ import { useIntl } from "react-intl";
 import { SpendingData } from "../types/spending";
 import { useSpendingData } from "../hooks/useQueries";
 import { log } from "console";
+import { LoadingSpinner } from "./LoadingSpinner";
+import { ErrorMessage } from "./ErrorMessage";
+import { SpendingByStarship } from "./SpendingByStarship";
 
 interface SpendingGraphProps {
   selectedEpisodes: number[];
@@ -14,7 +17,15 @@ export const SpendingGraph: React.FC<SpendingGraphProps> = ({
 }) => {
   const theme = useTheme();
   const intl = useIntl();
-  const { data = [] } = useSpendingData();
+  const { data = [], isLoading, isError } = useSpendingData();
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  if (isError) {
+    return <ErrorMessage messageId="error.api" />;
+  }
 
   // Create episode map
   const episodeMap = data.reduce<Record<number, SpendingData>>((acc, item) => {
@@ -41,7 +52,7 @@ export const SpendingGraph: React.FC<SpendingGraphProps> = ({
     <div className="h-[400px] w-full">
       <ResponsiveLine
         data={chartData}
-        margin={{ top: 50, right: 110, bottom: 50, left: 80 }}
+        margin={{ top: 30, right: 110, bottom: 50, left: 80 }}
         xScale={{ type: "point" }}
         yScale={{
           type: "linear",
@@ -128,6 +139,7 @@ export const SpendingGraph: React.FC<SpendingGraphProps> = ({
           );
         }}
       />
+      <SpendingByStarship data={filteredData} />
     </div>
   );
 };
