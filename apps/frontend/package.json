@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "npm run copy-static && next dev",
+    "build": "npm run copy-static && next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "copy-static": "cp -r src/static public/"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -27,6 +28,7 @@
     "react-intl": "6.4.2"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^12.1.5",
     "@types/node": "^18.15.13",
