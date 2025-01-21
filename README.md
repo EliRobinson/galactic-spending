@@ -2,6 +2,25 @@
 
 This application analyzes starship spending trends across the Star Wars saga episodes 1-6, using data from SWAPI (Star Wars API). It features a visual representation of spending patterns with filtering capabilities.
 
+## Note from Eli
+I had so much fun with this I really spent way more time than I probably should have... That being said, you should be able to run the project with these commands:
+```
+pnpm install
+pnpm dev
+```
+It should run the frontend and backend on ports 3000 and 4000 respectively.
+http://localhost:3000/
+
+### Additional Things I'd like to add
+- I'd like to add a better way to handle the theme switching. I'd do a drop-down so you could select either default computer theme or light/dark mode.
+- I'd like to have a better way to handle the language switching. I'd do a drop-down so you could select either default English or Wookiee.
+- I'd like to add a better way to handle the filtering. I'd like to have a drop-down so you could select either default all episodes or a specific episode.
+- I'd like to add a better way to handle the data visualization. I'd like to have a drop-down so you could select either default bar chart or pie chart.
+- I'd like to add a better way to handle the data. I'd like to have a drop-down so you could select either default all starships or a specific starship.
+- Some of the text I didn't localize properly.
+- Some of the colors could be a lot more concise.
+- Also, Shryiiwook is a lot like Welsh, where the words are CRAZY long, so there would have to be some good rules around handling that.
+
 ## Project Structure
 
 ```

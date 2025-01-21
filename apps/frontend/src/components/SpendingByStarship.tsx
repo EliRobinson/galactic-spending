@@ -193,6 +193,11 @@ export const SpendingByStarship = ({ data }: SpendingByStarshipProps) => {
                 color: theme.palette.text.primary,
               },
             },
+            legends: {
+              text: {
+                fill: theme.palette.text.primary,
+              },
+            },
             tooltip: {
               container: {
                 background: theme.palette.background.paper,
