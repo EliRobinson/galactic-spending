@@ -2,13 +2,16 @@ import { AppProps } from "next/app";
 import "../styles/globals.css";
 import { PageWrapper } from "../components/PageWrapper";
 import { ThemeProvider } from "../theme/ThemeContext";
+import { LanguageProvider } from "../i18n/LanguageContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider>
-      <PageWrapper>
-        <Component {...pageProps} />
-      </PageWrapper>
+      <LanguageProvider>
+        <PageWrapper>
+          <Component {...pageProps} />
+        </PageWrapper>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }
