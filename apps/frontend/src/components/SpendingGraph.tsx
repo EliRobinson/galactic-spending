@@ -126,10 +126,7 @@ export const SpendingGraph: React.FC<SpendingGraphProps> = ({
           return (
             <div
               className={cn(
-                "border p-2 rounded-md shadow-md",
-                isDarkMode
-                  ? "bg-[#1E1E1E] text-[#64696C]"
-                  : "bg-white text-[#B71C1C]"
+                "border p-2 rounded-md shadow-md bg-light-background-paper dark:bg-dark-background-paper text-light-primary-main dark:text-dark-primary-main"
               )}
             >
               <strong>

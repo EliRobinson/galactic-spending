@@ -118,10 +118,23 @@ export const SpendingByStarship = ({ data }: SpendingByStarshipProps) => {
               }),
           }}
           barAriaLabel={(e) => `${e.id}: ${e.formattedValue}`}
-          label={(d) => d.id as string}
-          labelSkipWidth={12}
-          labelSkipHeight={12}
-          labelTextColor={{ from: "color", modifiers: [["darker", 1.6]] }}
+          label={(d) => {
+            // Split long names into multiple lines with shorter width
+            const words = String(d.id).split(" ");
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+              if (currentLine.length + words[i].length < 8) {
+                currentLine += " " + words[i];
+              } else {
+                lines.push(currentLine);
+                currentLine = words[i];
+              }
+            }
+            lines.push(currentLine);
+            return lines.join("\n");
+          }}
           enableLabel={true}
           labelFormat={(d) => {
             // Split long names into multiple lines with shorter width
@@ -140,14 +153,6 @@ export const SpendingByStarship = ({ data }: SpendingByStarshipProps) => {
             }
             lines.push(currentLine);
             return lines.join("\n");
-          }}
-          labelStyle={{
-            fontSize: 8, // Reduced font size
-            lineHeight: "1em",
-            whiteSpace: "pre-wrap",
-            maxWidth: "60px", // Reduced max width
-            textAlign: "center",
-            transform: "translateX(-50%)", // Center the text
           }}
           legends={[
             {
@@ -191,10 +196,17 @@ export const SpendingByStarship = ({ data }: SpendingByStarshipProps) => {
                 stroke: theme.palette.divider,
               },
             },
+            labels: {
+              text: {
+                fontSize: 8,
+                lineHeight: 1,
+                textAlign: "center",
+              },
+            },
             tooltip: {
               container: {
                 background: theme.palette.background.paper,
-                color: theme.palette.text.primary,
+        color: theme.palette.text.primary,
               },
             },
           }}
