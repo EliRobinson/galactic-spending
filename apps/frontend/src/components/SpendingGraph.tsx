@@ -7,7 +7,6 @@ import { LoadingSpinner } from "./LoadingSpinner";
 import { ErrorMessage } from "./ErrorMessage";
 import { SpendingByStarship } from "./SpendingByStarship";
 import { useTheme } from "../theme/ThemeContext";
-import { cn } from "../theme/utils";
 
 interface SpendingGraphProps {
   selectedEpisodes: number[];
@@ -47,6 +46,7 @@ export const SpendingGraph: React.FC<SpendingGraphProps> = ({
         x: `Episode ${item.episode}`,
         y: item.totalSpending,
       })),
+      color: theme.palette.primary.main,
     },
   ];
 
@@ -115,6 +115,7 @@ export const SpendingGraph: React.FC<SpendingGraphProps> = ({
             },
           },
         }}
+        colors={{ datum: "color" }}
         tooltip={({ point }) => {
           const episode =
             typeof point.data.x === "string"
@@ -125,22 +126,27 @@ export const SpendingGraph: React.FC<SpendingGraphProps> = ({
 
           return (
             <div
-              className={cn(
-                "border p-2 rounded-md shadow-md bg-light-background-paper dark:bg-dark-background-paper text-light-primary-main dark:text-dark-primary-main"
-              )}
+              style={{
+                background: theme.palette.background.paper,
+                padding: "12px",
+                border: `1px solid ${theme.palette.divider}`,
+                borderRadius: "4px",
+              }}
             >
-              <strong>
+              <strong style={{ color: muiTheme.palette.primary.main }}>
                 {intl.formatMessage({ id: "graph.tooltip.episode" })}:{" "}
+                {episodeTitle ?? point.data.x}
               </strong>
-              {episodeTitle ?? point.data.x}
               <br />
-              <strong>
-                {intl.formatMessage({ id: "graph.tooltip.spending" })}:{" "}
-              </strong>
-              {intl.formatNumber(point.data.y as number, {
-                notation: "compact",
-                compactDisplay: "long",
-              })}
+              <span style={{ color: theme.palette.text.primary }}>
+                <strong>
+                  {intl.formatMessage({ id: "graph.tooltip.spending" })}:{" "}
+                </strong>
+                {intl.formatNumber(point.data.y as number, {
+                  notation: "compact",
+                  compactDisplay: "long",
+                })}
+              </span>
             </div>
           );
         }}
