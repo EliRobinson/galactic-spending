@@ -16,7 +16,7 @@ export const SpendingGraph: React.FC<SpendingGraphProps> = ({
   selectedEpisodes,
 }) => {
   const muiTheme = useMuiTheme();
-  const { isDarkMode, toggleTheme, theme } = useTheme();
+  const { theme } = useTheme();
   const intl = useIntl();
   const { data = [], isLoading, isError } = useSpendingData();
 

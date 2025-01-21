@@ -4,8 +4,6 @@ import { LoadingSpinner } from "../LoadingSpinner";
 describe("LoadingSpinner", () => {
   it("renders circular progress", () => {
     const { container } = render(<LoadingSpinner />);
-
-    // Check if CircularProgress is rendered
     expect(
       container.querySelector(".MuiCircularProgress-root")
     ).toBeInTheDocument();
@@ -13,13 +11,19 @@ describe("LoadingSpinner", () => {
 
   it("has correct styling classes", () => {
     const { container } = render(<LoadingSpinner />);
+    const wrapper = container.firstChild as HTMLElement;
 
-    const wrapper = container.firstChild;
     expect(wrapper).toHaveClass(
       "flex",
       "justify-center",
       "items-center",
       "min-h-screen"
     );
+  });
+
+  it("renders with correct accessibility", () => {
+    const { container } = render(<LoadingSpinner />);
+    const progress = container.querySelector(".MuiCircularProgress-root");
+    expect(progress).toHaveAttribute("role", "progressbar");
   });
 });

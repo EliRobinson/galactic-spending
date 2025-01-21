@@ -17,7 +17,7 @@ export const PageWrapper = ({ children }: { children: ReactNode }) => {
 };
 
 const PageWrapperInner = ({ children }: { children: ReactNode }) => {
-  const { isDarkMode, toggleTheme, theme, darkTheme, lightTheme } = useTheme();
+  const { isDarkMode, toggleTheme, theme, darkTheme } = useTheme();
   const { isWookiee, toggleLanguage } = useLanguage();
   const intl = useIntl();
 
