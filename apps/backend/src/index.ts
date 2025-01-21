@@ -29,8 +29,11 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
   res.status(500).json({ error: 'Something broke!' });
 });
 
-app.listen(port, () => {
-  console.log(`Backend server running at http://localhost:${port}`);
-});
+// Only start the server if this file is run directly (not imported as a module)
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
+    console.log(`Backend server running at http://localhost:${port}`);
+  });
+}
 
 export default app; 
