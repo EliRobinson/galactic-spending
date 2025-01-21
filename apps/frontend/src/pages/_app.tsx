@@ -1,11 +1,15 @@
 import { AppProps } from "next/app";
 import "../styles/globals.css";
 import { PageWrapper } from "../components/PageWrapper";
+import { ThemeProvider } from "../theme/ThemeContext";
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <PageWrapper>
-      <Component {...pageProps} />
-    </PageWrapper>
+    <ThemeProvider>
+      <PageWrapper>
+        <Component {...pageProps} />
+      </PageWrapper>
+    </ThemeProvider>
   );
 }
 

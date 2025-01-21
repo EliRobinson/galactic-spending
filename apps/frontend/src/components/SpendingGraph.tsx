@@ -1,12 +1,13 @@
-import { useTheme } from "@mui/material";
+import { useTheme as useMuiTheme } from "@mui/material";
 import { ResponsiveLine } from "@nivo/line";
 import { useIntl } from "react-intl";
 import { SpendingData } from "../types/spending";
 import { useSpendingData } from "../hooks/useQueries";
-import { log } from "console";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { ErrorMessage } from "./ErrorMessage";
 import { SpendingByStarship } from "./SpendingByStarship";
+import { useTheme } from "../theme/ThemeContext";
+import { cn } from "../theme/utils";
 
 interface SpendingGraphProps {
   selectedEpisodes: number[];
@@ -15,7 +16,8 @@ interface SpendingGraphProps {
 export const SpendingGraph: React.FC<SpendingGraphProps> = ({
   selectedEpisodes,
 }) => {
-  const theme = useTheme();
+  const muiTheme = useMuiTheme();
+  const { isDarkMode, toggleTheme, theme } = useTheme();
   const intl = useIntl();
   const { data = [], isLoading, isError } = useSpendingData();
 
@@ -92,24 +94,24 @@ export const SpendingGraph: React.FC<SpendingGraphProps> = ({
           axis: {
             ticks: {
               text: {
-                fill: theme.palette.text.primary,
+                fill: muiTheme.palette.text.primary,
               },
             },
             legend: {
               text: {
-                fill: theme.palette.text.primary,
+                fill: muiTheme.palette.text.primary,
               },
             },
           },
           grid: {
             line: {
-              stroke: theme.palette.divider,
+              stroke: muiTheme.palette.divider,
             },
           },
           tooltip: {
             container: {
-              background: theme.palette.background.paper,
-              color: theme.palette.text.primary,
+              background: muiTheme.palette.background.paper,
+              color: muiTheme.palette.text.primary,
             },
           },
         }}
@@ -122,7 +124,14 @@ export const SpendingGraph: React.FC<SpendingGraphProps> = ({
             typeof episode === "number" ? episodeMap[episode].title : null;
 
           return (
-            <div className="bg-white p-2 rounded-md shadow-md">
+            <div
+              className={cn(
+                "border p-2 rounded-md shadow-md",
+                isDarkMode
+                  ? "bg-[#1E1E1E] text-[#64696C]"
+                  : "bg-white text-[#B71C1C]"
+              )}
+            >
               <strong>
                 {intl.formatMessage({ id: "graph.tooltip.episode" })}:{" "}
               </strong>

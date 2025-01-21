@@ -24,12 +24,12 @@ export const darkTheme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#212121', // Empire Dark Gray
-      light: '#484848',
+      main: '#64696C', // Durasteel Grey
+      light: '#a9b1b6',
       dark: '#000000',
     },
     secondary: {
-      main: '#B71C1C', // Empire Red
+      main: '#BC1E22', // Empire Red
       light: '#F05545',
       dark: '#7F0000',
     },
@@ -38,4 +38,9 @@ export const darkTheme = createTheme({
       paper: '#1E1E1E',
     },
   },
-}); 
+});
+
+module.exports = {
+  lightTheme,
+  darkTheme,
+}; 
