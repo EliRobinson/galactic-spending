@@ -11,6 +11,8 @@ export const messages = {
   'theme.toggle': 'Toggle Theme',
   'theme.light': 'Light Side',
   'theme.dark': 'Dark Side',
+  'theme.rebel': 'Rebel (Light)',
+  'theme.imperial': 'Imperial (Dark)',
   'graph.tooltip.episode': 'Episode',
   'graph.tooltip.spending': 'Spend in Imperial Credits',
   'graph.starship': 'Starship',

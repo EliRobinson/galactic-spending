@@ -1,5 +1,5 @@
 export const messages = {
-  'app.title': 'Rrrrrr-ghghghghghgh',
+  'app.title': 'Rrrrrr-ghghghghghghgh',
   'app.subtitle': 'Wrrhhhh-ghghghghghgh',
   'graph.title': 'Rrrrrr-ghghghghghgh aaaaaaaaaaaaaa',
   'graph.xAxis': 'Wwwwwwww-ghghghghghgh',
@@ -18,4 +18,6 @@ export const messages = {
   'graph.starshipSpending.aria': 'Aaaaaaaaaa-ghghghghghgh Rrrrrr-ghghghghghgh Wwwwwwww-ghghghghghgh',
   'graph.tooltip.starship': 'Aaaaaaaaaa-ghghghghghgh',
   'graph.costThresholdNote': 'Wrrhhhh-ghghghghghgh {threshold} aaaaaaaaaaaaaa-ghghghghghgh',
+  'theme.rebel': 'Wrrhhhh-ghghghghghgh (Rrrrrr)',
+  'theme.imperial': 'Aaaaaaaaaa-ghghghghghgh (Wwwwwwww)',
 }; 

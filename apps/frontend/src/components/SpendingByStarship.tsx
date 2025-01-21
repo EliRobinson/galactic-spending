@@ -1,7 +1,7 @@
-import { useTheme } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar";
 import { useIntl } from "react-intl";
 import { SpendingData } from "../types/spending";
+import { useTheme } from "../theme/ThemeContext";
 
 interface SpendingByStarshipProps {
   data: SpendingData[];
@@ -24,7 +24,7 @@ const toTitleCase = (str: string): string => {
 };
 
 export const SpendingByStarship = ({ data }: SpendingByStarshipProps) => {
-  const theme = useTheme();
+  const { theme } = useTheme();
   const intl = useIntl();
 
   const COST_THRESHOLD = 500000000; // 500 million credits threshold
@@ -117,43 +117,32 @@ export const SpendingByStarship = ({ data }: SpendingByStarshipProps) => {
                 compactDisplay: "short",
               }),
           }}
+          enableLabel={false}
+          tooltip={({ id, value, color }) => (
+            <div
+              style={{
+                background: theme.palette.background.paper,
+                padding: "12px",
+                border: `1px solid ${theme.palette.divider}`,
+                borderRadius: "4px",
+              }}
+            >
+              <strong style={{ color }}>
+                {intl.formatMessage({ id: "graph.tooltip.starship" })}: {id}
+              </strong>
+              <br />
+              <span style={{ color: theme.palette.text.primary }}>
+                <strong>
+                  {intl.formatMessage({ id: "graph.tooltip.spending" })}:{" "}
+                </strong>
+                {intl.formatNumber(value as number, {
+                  notation: "compact",
+                  compactDisplay: "long",
+                })}
+              </span>
+            </div>
+          )}
           barAriaLabel={(e) => `${e.id}: ${e.formattedValue}`}
-          label={(d) => {
-            // Split long names into multiple lines with shorter width
-            const words = String(d.id).split(" ");
-            const lines = [];
-            let currentLine = words[0];
-
-            for (let i = 1; i < words.length; i++) {
-              if (currentLine.length + words[i].length < 8) {
-                currentLine += " " + words[i];
-              } else {
-                lines.push(currentLine);
-                currentLine = words[i];
-              }
-            }
-            lines.push(currentLine);
-            return lines.join("\n");
-          }}
-          enableLabel={true}
-          labelFormat={(d) => {
-            // Split long names into multiple lines with shorter width
-            const words = String(d).split(" ");
-            const lines = [];
-            let currentLine = words[0];
-
-            for (let i = 1; i < words.length; i++) {
-              if (currentLine.length + words[i].length < 8) {
-                // Reduced from 12 to 8
-                currentLine += " " + words[i];
-              } else {
-                lines.push(currentLine);
-                currentLine = words[i];
-              }
-            }
-            lines.push(currentLine);
-            return lines.join("\n");
-          }}
           legends={[
             {
               dataFrom: "keys",
@@ -201,32 +190,18 @@ export const SpendingByStarship = ({ data }: SpendingByStarshipProps) => {
                 fontSize: 8,
                 lineHeight: 1,
                 textAlign: "center",
+                color: theme.palette.text.primary,
               },
             },
             tooltip: {
               container: {
                 background: theme.palette.background.paper,
-        color: theme.palette.text.primary,
+                color: theme.palette.text.primary,
               },
             },
           }}
           role="application"
           ariaLabel={intl.formatMessage({ id: "graph.starshipSpending.aria" })}
-          tooltip={({ id, value, color }) => (
-            <div className="bg-white p-3 rounded-md shadow-md">
-              <strong style={{ color }}>
-                {intl.formatMessage({ id: "graph.tooltip.starship" })}: {id}
-              </strong>
-              <br />
-              <strong>
-                {intl.formatMessage({ id: "graph.tooltip.spending" })}:{" "}
-              </strong>
-              {intl.formatNumber(value as number, {
-                notation: "compact",
-                compactDisplay: "long",
-              })}
-            </div>
-          )}
         />
       </div>
       <div className="text-sm text-center italic -mt-6">
